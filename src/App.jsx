@@ -16,6 +16,10 @@ const App = () =>{
     setCurrent(current === images.length - 1 ? 0 : current + 1);
   }
 
+  function prevSlide() {
+    setCurrent(current === 0 ? images.length - 1 : current - 1);
+  }
+
   return <>
     <h1 className ="flex items-center justify-center text-center ">
         Project 1: Image Carousel
@@ -27,9 +31,14 @@ const App = () =>{
       </div>
   
 
-      <div>
-        <img src={images[0]} alt="image"  />
-      </div>
+      {images.map(
+          (image, index) =>
+            current === index && (
+              <div key={image} className="slide">
+                <img src={image} alt="images" />
+              </div>
+            )
+      )}
 
       <div className="2-2 cursor-pointer" onClick={nextSlide}>
       ➡
